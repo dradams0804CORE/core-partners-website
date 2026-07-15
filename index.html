@@ -1206,13 +1206,13 @@
 <section class="philosophy" id="philosophy">
   <div class="philosophy-inner">
     <div class="philosophy-left">
-      <div class="section-eyebrow">Our Approach</div>
-      <h2 class="section-heading">We don't sell<br>consulting. We build<br><em>partnerships.</em></h2>
+      <div class="section-eyebrow" style="font-size:12px;">Our Approach</div>
+      <h2 class="section-heading" style="font-size:clamp(32px, 4.2vw, 50px);">We don't sell<br>consulting. We build<br><em>partnerships.</em></h2>
       <div class="gold-rule"></div>
-      <p class="section-sub">
+      <p class="section-sub" style="font-size:18px; line-height:1.85; max-width:620px;">
         CORE Partners was founded on a simple realization: the consulting industry is broken. Practice owners are often sold an expensive "one-size fits all program." That's not CORE.
       </p>
-      <p class="section-sub" style="margin-top:16px;">
+      <p class="section-sub" style="font-size:18px; line-height:1.85; max-width:620px; margin-top:16px;">
         We are a boutique firm by choice. By limiting our client list, we provide a level of personalized integration that larger firms simply don't match. We don't just give advice; we build the systems that drive measurable growth.
       </p>
     </div>
@@ -1453,6 +1453,24 @@
           <label class="form-label">#1 Challenge Right Now</label>
           <textarea class="form-textarea" name="challenge" placeholder="e.g. Collections are flat, team accountability, too many hours..."></textarea>
 
+          <label class="form-label">How Did You Hear About Us?</label>
+          <select class="form-select" name="hearAbout" id="hear-about-select">
+            <option value="" disabled selected>Select an option...</option>
+            <option>Referral</option>
+            <option>Google Search</option>
+            <option>Social Media (Instagram/Facebook)</option>
+            <option>LinkedIn</option>
+            <option>Podcast</option>
+            <option>Webinar / Event</option>
+            <option>Existing CORE Client</option>
+            <option>Other</option>
+          </select>
+
+          <div id="referral-name-wrap" style="display:none;">
+            <label class="form-label">Who Can We Thank for the Referral?</label>
+            <input class="form-input" type="text" name="referralName" placeholder="Name of the person who referred you" />
+          </div>
+
           <button type="submit" class="form-submit">Request My Discovery Consultation →</button>
           <div style="text-align:center; margin-top:8px;"><span class="cta-phone">or text/call now <a href="tel:12817994999">281-799-4999</a></span></div>
           <div class="form-divider">or</div>
@@ -1663,6 +1681,18 @@
   if (phoneInput) {
     phoneInput.addEventListener('input', (e) => {
       e.target.value = formatPhone(e.target.value);
+    });
+  }
+
+  // Show "who can we thank" field only when Referral is selected
+  const hearAboutSelect = document.getElementById('hear-about-select');
+  const referralNameWrap = document.getElementById('referral-name-wrap');
+  if (hearAboutSelect && referralNameWrap) {
+    hearAboutSelect.addEventListener('change', (e) => {
+      const isReferral = e.target.value === 'Referral';
+      referralNameWrap.style.display = isReferral ? 'block' : 'none';
+      referralNameWrap.querySelector('input').required = isReferral;
+      if (!isReferral) referralNameWrap.querySelector('input').value = '';
     });
   }
 

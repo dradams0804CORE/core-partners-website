@@ -25,7 +25,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { fullName, practiceName, specialty, email, phone, challenge } = req.body || {};
+  const { fullName, practiceName, specialty, email, phone, challenge, hearAbout, referralName } = req.body || {};
 
   if (!fullName || !practiceName || !specialty || !email) {
     return res.status(400).json({ error: 'Missing required fields' });
@@ -39,6 +39,8 @@ export default async function handler(req, res) {
     <p><strong>Email:</strong> ${escapeHtml(email)}</p>
     <p><strong>Phone:</strong> ${escapeHtml(phone || 'Not provided')}</p>
     <p><strong>#1 Challenge:</strong> ${escapeHtml(challenge || 'Not provided')}</p>
+    <p><strong>How They Heard About Us:</strong> ${escapeHtml(hearAbout || 'Not provided')}</p>
+    ${hearAbout === 'Referral' ? `<p><strong>Referred By:</strong> ${escapeHtml(referralName || 'Not provided')}</p>` : ''}
   `;
 
   const transporter = getTransporter();
