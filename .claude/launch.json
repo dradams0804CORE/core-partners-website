@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "CORE Website",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-p", "4500", "."],
+      "port": 4500
+    }
+  ]
+}

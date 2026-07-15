@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CORE Partners: Chiropractic Practice Growth</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;1,8..60,300;1,8..60,400&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #091d35;
+    --navy-mid: #152e4d;
+    --navy-soft: #1e3a5f;
+    --gold: #d79b4b;
+    --gold-light: #e8be82;
+    --gold-pale: #f5e6cc;
+    --cream: #ece7db;
+    --cream-warm: #faf7ef;
+    --serif: 'Source Serif 4', Georgia, serif;
+    --sans: 'IBM Plex Sans', -apple-system, sans-serif;
+    --mono: 'IBM Plex Mono', 'Courier New', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--cream);
+    color: var(--navy);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(9,29,53,0.97);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(215,155,75,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    height: 64px;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  .nav-logo img { height: 32px; width: auto; display: block; }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(236,231,219,0.55);
+    text-decoration: none;
+    transition: color 0.2s;
+    font-family: var(--mono);
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+
+  .nav-cta {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: var(--mono);
+    background: var(--cream);
+    color: var(--gold);
+    padding: 9px 20px;
+    text-decoration: none;
+    font-weight: 400;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--cream-warm); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 48px 16px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-photo {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url("hero-background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      linear-gradient(to right, rgba(9,29,53,0.98) 0%, rgba(9,29,53,0.95) 35%, rgba(9,29,53,0.55) 65%, rgba(9,29,53,0.15) 100%),
+      radial-gradient(ellipse 60% 50% at 70% 50%, rgba(215,155,75,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(215,155,75,0.04) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .hero-watermark {
+    position: absolute;
+    right: -40px;
+    bottom: 40px;
+    width: 520px;
+    opacity: 0.045;
+    filter: brightness(10);
+    pointer-events: none;
+    user-select: none;
+    z-index: 1;
+  }
+
+  .hero-inner { max-width: 760px; position: relative; z-index: 2; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(215,155,75,0.3);
+    padding: 6px 14px;
+    margin-bottom: 28px;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(36px, 5vw, 58px);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.15;
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    color: rgba(236,231,219,0.6);
+    max-width: 520px;
+    line-height: 1.75;
+    margin-bottom: 36px;
+    font-weight: 300;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .hero-tagline {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 18px;
+    color: var(--gold);
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 0;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--cream);
+    color: var(--gold);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    text-decoration: none;
+    transition: background 0.2s;
+    font-weight: 400;
+  }
+  .btn-primary:hover { background: var(--cream-warm); }
+
+  .btn-ghost {
+    display: inline-block;
+    color: rgba(236,231,219,0.65);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 14px 0;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(236,231,219,0.2);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--gold-light); border-color: var(--gold); }
+
+  /* ─── STATS STRIPE ─── */
+  .stats-stripe {
+    background: var(--gold);
+    padding: 0;
+    display: flex;
+  }
+  .stat-item {
+    flex: 1;
+    padding: 22px 24px;
+    text-align: center;
+    border-right: 1px solid rgba(9,29,53,0.15);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-number {
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--navy);
+    display: block;
+  }
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(9,29,53,0.6);
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* ─── SECTION SHARED ─── */
+  section { padding: 96px 48px; }
+
+  .section-eyebrow {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .section-heading {
+    font-family: var(--serif);
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 300;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .section-heading em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .section-sub {
+    font-size: 15px;
+    color: rgba(9,29,53,0.6);
+    max-width: 560px;
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  .gold-rule {
+    width: 36px;
+    height: 2px;
+    background: var(--gold);
+    margin: 20px 0;
+  }
+
+  /* ─── PHILOSOPHY ─── */
+  .philosophy {
+    background: var(--cream-warm);
+    border-top: 1px solid rgba(9,29,53,0.08);
+    border-bottom: 1px solid rgba(9,29,53,0.08);
+  }
+
+  .philosophy-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .philosophy-left { }
+
+  .philosophy-pillars {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .pillar {
+    background: #ffffff;
+    border-left: 3px solid var(--gold);
+    padding: 28px 32px;
+    box-shadow: 0 2px 10px rgba(9,29,53,0.05);
+  }
+
+  .pillar-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .pillar-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--gold-pale);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pillar-icon svg { width: 18px; height: 18px; stroke: var(--gold); }
+
+  .pillar-label {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--navy);
+  }
+  .pillar p {
+    font-size: 14px;
+    color: rgba(9,29,53,0.6);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ─── FRAMEWORK ─── */
+  .framework { background: var(--navy); }
+  .framework .section-heading { color: var(--cream); }
+  .framework .section-sub { color: rgba(236,231,219,0.55); max-width: 680px; }
+  .framework .section-eyebrow { color: var(--gold-light); }
+
+  .framework-inner { max-width: 1100px; margin: 0 auto; }
+
+  /* Driver grid: 4 columns */
+  .driver-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(215,155,75,0.12);
+    margin: 52px 0 0;
+  }
+
+  .driver-card {
+    background: var(--navy);
+    padding: 36px 28px 32px;
+    transition: background 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .driver-card:hover { background: var(--navy-mid); }
+
+  .driver-letter {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 150px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.04);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .driver-name-tag {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .driver-card h3 {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 14px;
+    line-height: 1.25;
+  }
+
+  .driver-card p {
+    font-size: 13px;
+    color: rgba(236,231,219,0.5);
+    line-height: 1.7;
+    font-weight: 300;
+    margin-bottom: 20px;
+    flex: 1;
+  }
+
+  .accelerator-pills {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    height: 66px;
+  }
+
+  .acc-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(215,155,75,0.7);
+    border: 1px solid rgba(215,155,75,0.18);
+    padding: 7px 12px;
+  }
+  .acc-pill::before {
+    content: '';
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.6;
+    flex-shrink: 0;
+  }
+
+  /* Driver detail rows */
+  .driver-details {
+    margin-top: 1px;
+    background: rgba(215,155,75,0.12);
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .driver-detail {
+    background: rgba(9,29,53,0.6);
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 0;
+    cursor: pointer;
+  }
+
+  .driver-detail-letter {
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-right: 1px solid rgba(215,155,75,0.12);
+  }
+
+  .driver-big-letter {
+    font-family: var(--serif);
+    font-size: 48px;
+    font-weight: 300;
+    color: rgba(215,155,75,0.35);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .driver-detail-name {
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(215,155,75,0.5);
+  }
+
+  .driver-detail-body {
+    padding: 28px 32px;
+  }
+
+  .driver-detail-title {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 10px;
+  }
+
+  .driver-detail-text {
+    font-size: 13.5px;
+    color: rgba(236,231,219,0.55);
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  .driver-detail-accs {
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+  }
+
+  .driver-detail-acc {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(215,155,75,0.08);
+    border: 1px solid rgba(215,155,75,0.2);
+    padding: 4px 12px;
+  }
+
+  /* ─── CORE WHEEL DIAGRAM ─── */
+  .core-wheel-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 56px 0 48px;
+  }
+
+  .core-wheel {
+    position: relative;
+    width: 580px;
+    height: 580px;
+    flex-shrink: 0;
+  }
+
+  /* four quadrant bubbles */
+  .cw-bubble {
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: rgba(236,231,219,0.05);
+    border: 1px solid rgba(215,155,75,0.18);
+  }
+  .cw-bubble.tl { top: 0; left: 0; }
+  .cw-bubble.tr { top: 0; right: 0; }
+  .cw-bubble.bl { bottom: 0; left: 0; }
+  .cw-bubble.br { bottom: 0; right: 0; }
+
+  /* diagonal lines */
+  .cw-lines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  /* quadrant labels */
+  .cw-label {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .cw-label.tl { top: 28px; left: 20px; }
+  .cw-label.tr { top: 28px; right: 20px; text-align: right; }
+  .cw-label.bl { bottom: 28px; left: 20px; }
+  .cw-label.br { bottom: 28px; right: 20px; text-align: right; }
+
+  .cw-label h4 {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1;
+  }
+
+  .cw-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--sans);
+    font-size: 11.5px;
+    font-weight: 300;
+    color: rgba(236,231,219,0.7);
+    background: rgba(9,29,53,0.5);
+    border: 1px solid rgba(215,155,75,0.2);
+    padding: 5px 12px;
+    border-radius: 2px;
+  }
+  .cw-pill::before {
+    content: '•';
+    color: var(--gold);
+    font-size: 10px;
+  }
+
+  /* center circle */
+  .cw-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: var(--navy);
+    border: 2px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-shadow: 0 0 0 8px rgba(9,29,53,0.6);
+  }
+  .cw-center img {
+    width: 100px;
+    height: auto;
+    filter: brightness(10) saturate(0);
+    opacity: 0.9;
+  }
+
+  /* tagline */
+  .cw-tagline {
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(215,155,75,0.4);
+    margin-top: 8px;
+  }
+
+  @media (max-width: 900px) {
+    .driver-grid { grid-template-columns: repeat(2, 1fr); }
+    .driver-detail { grid-template-columns: 80px 1fr; }
+    .driver-big-letter { font-size: 36px; }
+    .core-wheel { width: 340px; height: 340px; }
+    .cw-bubble { width: 155px; height: 155px; }
+    .cw-label h4 { font-size: 14px; }
+    .cw-pill { font-size: 9px; padding: 3px 8px; }
+    .cw-center { width: 90px; height: 90px; }
+    .cw-center img { width: 66px; }
+    .cw-label.tl { top: 16px; left: 10px; }
+    .cw-label.tr { top: 16px; right: 10px; }
+    .cw-label.bl { bottom: 16px; left: 10px; }
+    .cw-label.br { bottom: 16px; right: 10px; }
+  }
+
+  /* ─── RESULTS ─── */
+  .results { background: var(--cream); }
+  .results-inner { max-width: 1100px; margin: 0 auto; }
+
+  .results-header { margin-bottom: 60px; }
+
+  .counter-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(9,29,53,0.1);
+    border: 1px solid rgba(9,29,53,0.1);
+    margin-bottom: 64px;
+  }
+
+  .counter-item {
+    background: var(--cream-warm);
+    padding: 40px 32px;
+    text-align: center;
+  }
+
+  .counter-value {
+    font-family: var(--serif);
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--navy);
+    line-height: 1;
+    display: block;
+  }
+  .counter-suffix {
+    font-family: var(--serif);
+    font-size: 28px;
+    color: var(--gold);
+  }
+
+  .counter-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(9,29,53,0.45);
+    display: block;
+    margin-top: 8px;
+  }
+
+  /* ─── TESTIMONIALS ─── */
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .testimonial {
+    background: var(--cream-warm);
+    border: 1px solid rgba(9,29,53,0.1);
+    border-left: 3px solid var(--gold);
+    padding: 32px 28px;
+  }
+
+  .testimonial-quote {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--navy);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .testimonial-attr {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .testimonial-name {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--navy);
+  }
+  .testimonial-title {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ─── FORM / CTA ─── */
+  .form-section {
+    background: var(--navy);
+    padding: 96px 48px;
+  }
+
+  .form-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .form-left .section-heading { color: var(--cream); }
+  .form-left .section-sub { color: rgba(236,231,219,0.55); }
+
+  .form-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 28px;
+  }
+  .form-bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 13.5px;
+    color: rgba(236,231,219,0.7);
+    line-height: 1.5;
+    font-weight: 300;
+  }
+  .form-bullets li::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    min-width: 5px;
+    background: var(--gold);
+    border-radius: 50%;
+    margin-top: 7px;
+  }
+
+  .form-right { }
+
+  .form-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(215,155,75,0.2);
+    padding: 36px;
+  }
+
+  .form-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(215,155,75,0.7);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .form-input {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(215,155,75,0.15);
+    color: var(--cream);
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 300;
+    padding: 11px 14px;
+    margin-bottom: 16px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-input:focus { border-color: rgba(215,155,75,0.5); }
+  .form-input::placeholder { color: rgba(236,231,219,0.25); }
+
+  .form-select {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(215,155,75,0.15);
+    color: rgba(236,231,219,0.7);
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 300;
+    padding: 11px 14px;
+    margin-bottom: 16px;
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+  }
+  .form-select option { background: var(--navy-mid); }
+
+  .form-textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(215,155,75,0.15);
+    color: var(--cream);
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 300;
+    padding: 11px 14px;
+    margin-bottom: 16px;
+    outline: none;
+    resize: none;
+    height: 80px;
+    transition: border-color 0.2s;
+  }
+  .form-textarea:focus { border-color: rgba(215,155,75,0.5); }
+  .form-textarea::placeholder { color: rgba(236,231,219,0.25); }
+
+  .form-submit {
+    width: 100%;
+    background: var(--cream);
+    color: var(--gold);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 15px;
+    border: none;
+    cursor: pointer;
+    font-weight: 400;
+    transition: background 0.2s;
+  }
+  .form-submit:hover { background: var(--cream-warm); }
+
+  .form-divider {
+    text-align: center;
+    margin: 16px 0;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: rgba(215,155,75,0.4);
+    position: relative;
+  }
+  .form-divider::before, .form-divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 38%;
+    height: 1px;
+    background: rgba(215,155,75,0.15);
+  }
+  .form-divider::before { left: 0; }
+  .form-divider::after { right: 0; }
+
+  .form-alt {
+    width: 100%;
+    background: transparent;
+    border: 1px solid rgba(215,155,75,0.25);
+    color: rgba(236,231,219,0.7);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 14px;
+    cursor: pointer;
+    font-weight: 400;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .form-alt:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #060f1c;
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    text-align: center;
+    border-top: 1px solid rgba(215,155,75,0.1);
+  }
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .footer-logo {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: rgba(236,231,219,0.5);
+  }
+  .footer-logo span { color: var(--gold); }
+
+  .footer-copy {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: rgba(236,231,219,0.2);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+  }
+  .footer-links a {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: rgba(236,231,219,0.3);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ─── COUNTER ANIMATION ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { opacity: 0; animation: fadeUp 0.6s ease forwards; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    section { padding: 72px 24px; }
+    .hero { padding: 100px 24px 64px; }
+    .philosophy-inner { grid-template-columns: 1fr; gap: 48px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .counter-grid { grid-template-columns: repeat(2, 1fr); }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .form-inner { grid-template-columns: 1fr; gap: 48px; }
+    .form-section { padding: 72px 24px; }
+    footer { flex-direction: column; gap: 20px; text-align: center; }
+    .stats-stripe { flex-direction: column; }
+    .stat-item { border-right: none; border-bottom: 1px solid rgba(9,29,53,0.15); }
+    .stat-item:last-child { border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo"><img src="logo-light.png" alt="CORE Partners" /></a>
+  <ul class="nav-links">
+    <li><a href="#philosophy">Our Approach</a></li>
+    <li><a href="#services">Framework</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://app.corepartnersconsulting.com/login">Partner Login</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Book a Call</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-photo" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">Invitation Only · Boutique Practice Consulting</div>
+    <h1>
+      You became a doctor<br>
+      to <em>help people</em>.<br>
+      Not to run a struggling business.
+    </h1>
+    <p class="hero-sub">
+      CORE Partners embeds directly into your practice, bringing the systems, strategy, and weekly accountability to finally grow your collections and reclaim your life.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Schedule a Discovery Call →</a>
+    </div>
+  </div>
+  <div class="hero-tagline">Real Relationships&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Real Outcomes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Real Growth</div>
+</section>
+
+<!-- STATS STRIPE -->
+<div class="stats-stripe">
+  <div class="stat-item">
+    <span class="stat-number">Avg. 40%</span>
+    <span class="stat-label">Revenue Growth</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-number">Senior-Level</span>
+    <span class="stat-label">Attention, Always</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-number">Strictly Limited</span>
+    <span class="stat-label">Clientele</span>
+  </div>
+</div>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy" id="philosophy">
+  <div class="philosophy-inner">
+    <div class="philosophy-left">
+      <div class="section-eyebrow">Our Approach</div>
+      <h2 class="section-heading">We don't sell<br>consulting. We build<br><em>partnerships.</em></h2>
+      <div class="gold-rule"></div>
+      <p class="section-sub">
+        CORE Partners was founded on a simple realization: the consulting industry is broken. Practice owners are often sold an expensive "one-size fits all program." That's not CORE.
+      </p>
+      <p class="section-sub" style="margin-top:16px;">
+        We are a boutique firm by choice. By limiting our client list, we provide a level of personalized integration that larger firms simply don't match. We don't just give advice; we build the systems that drive measurable growth.
+      </p>
+    </div>
+    <div class="philosophy-pillars">
+      <div class="pillar">
+        <div class="pillar-header">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5l-8-3z"/></svg>
+          </div>
+          <div class="pillar-label">Selective by Design</div>
+        </div>
+        <p>We deliberately limit our client list to ensure every practice receives our full tactical weight. We turn away more potential clients than we accept to maintain our standard of excellence.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-header">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 14.8 8.6l6.7.9-4.9 4.6 1.3 6.6L12 17.8l-5.9 2.9 1.3-6.6-4.9-4.6 6.7-.9z"/></svg>
+          </div>
+          <div class="pillar-label">Senior-Level Only</div>
+        </div>
+        <p>Your practice is too important for junior associates. Every CORE engagement is led directly by a senior partner with decades of operational expertise. No hand-offs, ever.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-header">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 9 11l4 4 8-9"/><path d="M15 6h6v6"/></svg>
+          </div>
+          <div class="pillar-label">Measured by Revenue</div>
+        </div>
+        <p>We don't care about 'brand awareness' or vanity metrics. Our success is defined by what hits your bank account and how many hours we can give back to your personal life.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FRAMEWORK -->
+<section class="framework" id="services">
+  <div class="framework-inner">
+    <div class="section-eyebrow">The CORE Framework</div>
+    <h2 class="section-heading">Four Drivers. Eight Accelerators.<br><em>One practice that finally works for you.</em></h2>
+    <p class="section-sub">We don't guess which Driver needs attention. We diagnose it, the same way you diagnose a patient. Every practice has four Drivers. Most doctors only consider one or two of them.</p>
+
+    <!-- 4-column driver overview -->
+    <div class="driver-grid">
+
+      <div class="driver-card">
+        <div class="driver-letter">C</div>
+        <div class="driver-name-tag">Driver 01</div>
+        <h3>Conviction</h3>
+        <p>Every struggling practice we've ever worked with had the same root problem: the doctor was still thinking like a clinician, not an owner. Conviction is where we always start.</p>
+        <div class="accelerator-pills"></div>
+      </div>
+
+      <div class="driver-card">
+        <div class="driver-letter">O</div>
+        <div class="driver-name-tag">Driver 02</div>
+        <h3>Operations</h3>
+        <p>Operations is the engine room of your practice. A busy practice and a profitable practice are two very different things. Operations is the difference.</p>
+        <div class="accelerator-pills"></div>
+      </div>
+
+      <div class="driver-card">
+        <div class="driver-letter">R</div>
+        <div class="driver-name-tag">Driver 03</div>
+        <h3>Revenue</h3>
+        <p>More new patients is rarely the answer. Better conversion almost always is. The Revenue Driver shows you there's a much smarter way to grow.</p>
+        <div class="accelerator-pills"></div>
+      </div>
+
+      <div class="driver-card">
+        <div class="driver-letter">E</div>
+        <div class="driver-name-tag">Driver 04</div>
+        <h3>Expansion</h3>
+        <p>Expansion isn't something you chase. It's something you build toward, and when the other three Drivers are solid, it happens naturally.</p>
+        <div class="accelerator-pills"></div>
+      </div>
+
+    </div>
+
+    <!-- Driver detail rows -->
+    <div class="driver-details">
+
+      <div class="driver-detail">
+        <div class="driver-detail-letter">
+          <div class="driver-big-letter">C</div>
+          <div class="driver-detail-name">Conviction</div>
+        </div>
+        <div class="driver-detail-body">
+          <div class="driver-detail-title">Most doctors are brilliant clinicians who never learned to think like owners.</div>
+          <p class="driver-detail-text">Conviction is where we start, every time, with every practice. Mindset shifts how you see yourself: from technician to CEO, from clinician to owner. Culture defines the environment you create for your team and your patients. Nothing else we build together works without this Driver fully engaged. Your team will never outperform your culture. And your culture will never outperform your mindset.</p>
+          <div class="driver-detail-accs">
+            <span class="driver-detail-acc">Accelerator 1: Mindset</span>
+            <span class="driver-detail-acc">Accelerator 2: Culture</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="driver-detail">
+        <div class="driver-detail-letter">
+          <div class="driver-big-letter">O</div>
+          <div class="driver-detail-name">Operations</div>
+        </div>
+        <div class="driver-detail-body">
+          <div class="driver-detail-title">You can't scale chaos. Operations has to come before Expansion, every single time.</div>
+          <p class="driver-detail-text">Collections ensures the money you earn actually lands in your account, predictably and reliably every single month. Consistency ensures your care is delivered exactly as you designed it, with every patient, every visit. When Operations is running the way it should, your practice feels calm, professional, and scalable. Most doctors are sitting on uncollected revenue they don't even know about.</p>
+          <div class="driver-detail-accs">
+            <span class="driver-detail-acc">Accelerator 3: Collections</span>
+            <span class="driver-detail-acc">Accelerator 4: Consistency</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="driver-detail">
+        <div class="driver-detail-letter">
+          <div class="driver-big-letter">R</div>
+          <div class="driver-detail-name">Revenue</div>
+        </div>
+        <div class="driver-detail-body">
+          <div class="driver-detail-title">You're probably leaving more money on the table than you realize, and it has nothing to do with how hard you're working.</div>
+          <p class="driver-detail-text">The Revenue Expander helps you grow your income without adding more hours to an already packed schedule. Conversion turns the patients who walk through your door into committed, long-term members of your practice. We've helped doctors increase revenue significantly without adding a single new patient. Growing revenue without growing your hours is not a fantasy. It's a system.</p>
+          <div class="driver-detail-accs">
+            <span class="driver-detail-acc">Accelerator 5: Revenue Expander</span>
+            <span class="driver-detail-acc">Accelerator 6: Conversion</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="driver-detail">
+        <div class="driver-detail-letter">
+          <div class="driver-big-letter">E</div>
+          <div class="driver-detail-name">Expansion</div>
+        </div>
+        <div class="driver-detail-body">
+          <div class="driver-detail-title">When your patients become your marketers, your growth becomes unstoppable.</div>
+          <p class="driver-detail-text">Experience creates patient loyalty so strong your best patients become your most powerful marketers, sending friends, family, and colleagues straight to your door. Attraction builds consistent new patient flow so you never again wonder where next month's numbers are coming from. New patient flow isn't a marketing problem. It's an experience problem. When the first three Drivers are solid, Expansion becomes inevitable.</p>
+          <div class="driver-detail-accs">
+            <span class="driver-detail-acc">Accelerator 7: Experience</span>
+            <span class="driver-detail-acc">Accelerator 8: Attraction</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="results" id="results">
+  <div class="results-inner">
+    <div class="results-header">
+      <div class="section-eyebrow">Proven Results</div>
+      <h2 class="section-heading">The numbers<br>don't <em>lie.</em></h2>
+      <div class="gold-rule"></div>
+      <p class="section-sub">Our clients don't come to us for motivation. They come for measurable, bankable results.</p>
+    </div>
+
+    <div class="counter-grid" id="counter-grid">
+      <div class="counter-item">
+        <span class="counter-value" id="c1">0<span class="counter-suffix">%</span></span>
+        <span class="counter-label">Avg. Revenue Growth</span>
+      </div>
+      <div class="counter-item">
+        <span class="counter-value" id="c2">0<span class="counter-suffix">hrs</span></span>
+        <span class="counter-label">Avg. Weekly Time Reclaimed</span>
+      </div>
+      <div class="counter-item">
+        <span class="counter-value" id="c3">0<span class="counter-suffix">%</span></span>
+        <span class="counter-label">Client Retention Rate</span>
+      </div>
+      <div class="counter-item">
+        <span class="counter-value" id="c4">0<span class="counter-suffix">×</span></span>
+        <span class="counter-label">Avg. ROI on Investment</span>
+      </div>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <p class="testimonial-quote">"Before CORE, I was seeing 35+ patients a day and still barely making payroll. In nine months we restructured everything. I see fewer patients, collections are up 47%, and I actually take weekends off now."</p>
+        <div class="testimonial-attr">
+          <span class="testimonial-name">Dr. M. Roberts, DC</span>
+          <span class="testimonial-title">Chiropractic, Tulsa, OK</span>
+        </div>
+      </div>
+      <div class="testimonial">
+        <p class="testimonial-quote">"The marketing piece alone paid for the entire engagement in the first 90 days. But what I didn't expect was how much my team would change. CORE transformed the culture of my whole practice."</p>
+        <div class="testimonial-attr">
+          <span class="testimonial-name">Dr. S. Nguyen, DC</span>
+          <span class="testimonial-title">Chiropractic, Nashville, TN</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / FORM -->
+<section class="form-section" id="contact">
+  <div class="form-inner">
+    <div class="form-left">
+      <div class="section-eyebrow">Discovery Consultation</div>
+      <h2 class="section-heading" style="color:var(--cream);">Is your practice<br>a fit for <em>CORE?</em></h2>
+      <div class="gold-rule"></div>
+      <p class="section-sub" style="color:rgba(236,231,219,0.55);">We don't work with everyone. Our Discovery Consultation is a 30-minute, no-pressure conversation to assess whether we're the right fit for your practice.</p>
+      <ul class="form-bullets">
+        <li>No templates. No one-size-fits-all programs.</li>
+        <li>You speak directly with a senior CORE partner, not a salesperson.</li>
+        <li>Walk away with at least one actionable insight, regardless of next steps.</li>
+        <li>If we can't add significant value to your practice, we'll tell you that too.</li>
+      </ul>
+    </div>
+    <div class="form-right">
+      <div class="form-card">
+        <form id="consultation-form" onsubmit="handleSubmit(event)">
+          <label class="form-label">Full Name</label>
+          <input class="form-input" type="text" name="fullName" placeholder="Dr. Jane Smith" required />
+
+          <label class="form-label">Practice Name</label>
+          <input class="form-input" type="text" name="practiceName" placeholder="Smith Chiropractic" required />
+
+          <label class="form-label">Specialty / Practice Type</label>
+          <select class="form-select" name="specialty" required>
+            <option value="" disabled selected>Select specialty...</option>
+            <option>Medical</option>
+            <option>Chiropractic</option>
+            <option>Acupuncture</option>
+            <option>Dentistry</option>
+            <option>Podiatry</option>
+            <option>Med Spa</option>
+            <option>Gym</option>
+            <option>Other</option>
+          </select>
+
+          <label class="form-label">Email Address</label>
+          <input class="form-input" type="email" name="email" placeholder="jane@smithchiro.com" required />
+
+          <label class="form-label">Phone Number</label>
+          <input class="form-input" type="tel" name="phone" placeholder="(555) 000-0000" />
+
+          <label class="form-label">#1 Challenge Right Now</label>
+          <textarea class="form-textarea" name="challenge" placeholder="e.g. Collections are flat, team accountability, too many hours..."></textarea>
+
+          <button type="submit" class="form-submit">Request My Discovery Consultation →</button>
+          <div class="form-divider">or</div>
+          <a href="https://app.corepartnersconsulting.com/get-started" class="form-alt" style="display:block; text-align:center; text-decoration:none;">I'm Ready to Get Started Now</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo"><img src="logo-light.png" alt="CORE Partners" style="height:28px;width:auto;opacity:0.6;" /></div>
+  <div class="hero-tagline">Real Relationships&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Real Outcomes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Real Growth</div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 CORE Partners. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Counter animation
+  function animateCounter(el, target, suffix, duration, decimals) {
+    const start = performance.now();
+    function update(time) {
+      const elapsed = Math.min((time - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - elapsed, 3);
+      const val = decimals ? (target * ease).toFixed(1) : Math.round(target * ease);
+      el.innerHTML = val + '<span class="counter-suffix">' + suffix + '</span>';
+      if (elapsed < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  const counters = [
+    { id: 'c1', target: 40, suffix: '%', decimals: false },
+    { id: 'c2', target: 10, suffix: 'hrs', decimals: false },
+    { id: 'c3', target: 94, suffix: '%', decimals: false },
+    { id: 'c4', target: 3.2, suffix: '×', decimals: true },
+  ];
+
+  let animated = false;
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !animated) {
+        animated = true;
+        counters.forEach(c => {
+          animateCounter(document.getElementById(c.id), c.target, c.suffix, 1800, c.decimals);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const grid = document.getElementById('counter-grid');
+  if (grid) observer.observe(grid);
+
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 40) {
+      nav.style.borderBottomColor = 'rgba(215,155,75,0.25)';
+    } else {
+      nav.style.borderBottomColor = 'rgba(215,155,75,0.15)';
+    }
+  });
+
+  // Form submission
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('.form-submit');
+    btn.textContent = 'Sending...';
+    btn.style.opacity = '0.7';
+
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    try {
+      const res = await fetch('/api/consultation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (!res.ok) throw new Error('Request failed');
+
+      btn.textContent = 'Request Received. Redirecting...';
+      btn.style.background = '#2d6a3f';
+      btn.style.color = '#fff';
+      setTimeout(() => { window.location.href = 'schedule.html'; }, 900);
+    } catch (err) {
+      btn.textContent = 'Something went wrong. Please try again.';
+      btn.style.background = '#a33';
+      btn.style.color = '#fff';
+      btn.style.opacity = '1';
+    }
+  }
+</script>
+</body>
+</html>
