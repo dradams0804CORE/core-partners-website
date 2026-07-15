@@ -1229,17 +1229,17 @@
 
     <div class="testimonials-grid">
       <div class="testimonial">
-        <p class="testimonial-quote">"Before CORE, I was seeing 35+ patients a day and still barely making payroll. In nine months we restructured everything. I see fewer patients, collections are up 47%, and I actually take weekends off now."</p>
+        <p class="testimonial-quote">"Before CORE, I was seeing 35+ patients a day and still barely making payroll. With CORE's help we restructured everything. I see fewer patients, collections are up 47%, and I actually take weekends off now."</p>
         <div class="testimonial-attr">
           <span class="testimonial-name">Dr. M. Roberts, DC</span>
           <span class="testimonial-title">Chiropractic, Tulsa, OK</span>
         </div>
       </div>
       <div class="testimonial">
-        <p class="testimonial-quote">"The marketing piece alone paid for the entire engagement in the first 90 days. But what I didn't expect was how much my team would change. CORE transformed the culture of my whole practice."</p>
+        <p class="testimonial-quote">"I have grown my revenue by 133% and just had my best month ever after working with CORE for the past 4 months."</p>
         <div class="testimonial-attr">
-          <span class="testimonial-name">Dr. S. Nguyen, DC</span>
-          <span class="testimonial-title">Chiropractic, Nashville, TN</span>
+          <span class="testimonial-name">Dr. P. Rardin, DC</span>
+          <span class="testimonial-title">Chiropractic, San Diego, CA</span>
         </div>
       </div>
     </div>
@@ -1287,7 +1287,7 @@
           <input class="form-input" type="email" name="email" placeholder="jane@smithchiro.com" required />
 
           <label class="form-label">Phone Number</label>
-          <input class="form-input" type="tel" name="phone" placeholder="(555) 000-0000" />
+          <input class="form-input" type="tel" name="phone" id="phone-input" placeholder="(555) 000-0000" maxlength="14" />
 
           <label class="form-label">#1 Challenge Right Now</label>
           <textarea class="form-textarea" name="challenge" placeholder="e.g. Collections are flat, team accountability, too many hours..."></textarea>
@@ -1330,10 +1330,10 @@
   }
 
   const counters = [
-    { id: 'c1', target: 40, suffix: '%', decimals: false },
+    { id: 'c1', target: 47, suffix: '%', decimals: false },
     { id: 'c2', target: 10, suffix: 'hrs', decimals: false },
-    { id: 'c3', target: 94, suffix: '%', decimals: false },
-    { id: 'c4', target: 3.2, suffix: '×', decimals: true },
+    { id: 'c3', target: 98, suffix: '%', decimals: false },
+    { id: 'c4', target: 9.3, suffix: '×', decimals: true },
   ];
 
   let animated = false;
@@ -1360,6 +1360,23 @@
       nav.style.borderBottomColor = 'rgba(215,155,75,0.15)';
     }
   });
+
+  // Phone number formatting (matches CORE Portal's formatPhone)
+  function formatPhone(value) {
+    let d = value.replace(/\D/g, '');
+    if (d.length === 11 && d[0] === '1') d = d.slice(1);
+    d = d.slice(0, 10);
+    if (d.length === 0) return '';
+    if (d.length < 4) return '(' + d;
+    if (d.length < 7) return '(' + d.slice(0, 3) + ') ' + d.slice(3);
+    return '(' + d.slice(0, 3) + ') ' + d.slice(3, 6) + '-' + d.slice(6);
+  }
+  const phoneInput = document.getElementById('phone-input');
+  if (phoneInput) {
+    phoneInput.addEventListener('input', (e) => {
+      e.target.value = formatPhone(e.target.value);
+    });
+  }
 
   // Form submission
   async function handleSubmit(e) {
