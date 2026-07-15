@@ -1018,6 +1018,18 @@
     flex-wrap: wrap;
   }
 
+  footer .hero-tagline {
+    font-size: 22px;
+    animation: none;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 5s ease, transform 5s ease;
+  }
+  footer .hero-tagline.in-view {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+
   .footer-logo {
     font-family: var(--serif);
     font-size: 15px;
@@ -1054,7 +1066,7 @@
     font-size: 11px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: rgba(236,231,219,0.4);
     margin-bottom: 16px;
   }
   .footer-contact-grid {
@@ -1073,8 +1085,8 @@
   }
   .footer-contact-value {
     font-family: var(--serif);
-    font-size: 15px;
-    color: rgba(236,231,219,0.75);
+    font-size: 12px;
+    color: rgba(236,231,219,0.4);
     text-decoration: none;
   }
   a.footer-contact-value:hover { color: var(--gold); }
@@ -1428,7 +1440,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo"><img src="logo-light.png" alt="CORE Partners" style="height:28px;width:auto;opacity:0.6;" /></div>
+  <div class="footer-logo"><img src="logo-light.png" alt="CORE Partners" style="height:38px;width:auto;opacity:0.7;" /></div>
   <div class="hero-tagline">Real Relationships&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Real Outcomes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Real Growth</div>
 
   <div class="footer-contact">
@@ -1452,6 +1464,7 @@
     <div class="footer-links">
       <a href="privacy.html">Privacy</a>
       <a href="terms.html">Terms</a>
+      <a href="nondiscrimination.html">Nondiscrimination</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
@@ -1597,6 +1610,20 @@
       });
     }, { threshold: 0.2 });
     formLeftObserver.observe(formLeft);
+  }
+
+  // Footer tagline grows into view on scroll
+  const footerTagline = document.querySelector('footer .hero-tagline');
+  if (footerTagline) {
+    const taglineObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          taglineObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    taglineObserver.observe(footerTagline);
   }
 
   // Phone number formatting (matches CORE Portal's formatPhone)
