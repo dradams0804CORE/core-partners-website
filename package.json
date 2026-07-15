@@ -1,0 +1,8 @@
+{
+  "name": "core-partners-website",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "nodemailer": "^8.0.7"
+  }
+}

@@ -1,3 +1,25 @@
+import nodemailer from 'nodemailer';
+
+function getTransporter() {
+  const host = process.env.SMTP_HOST;
+  const user = process.env.SMTP_USER;
+  const pass = process.env.SMTP_PASS;
+  if (!host || !user || !pass) {
+    console.warn('[consultation] SMTP not configured — skipping send. Set SMTP_HOST, SMTP_USER, SMTP_PASS.');
+    return null;
+  }
+  return nodemailer.createTransport({
+    host,
+    port: parseInt(process.env.SMTP_PORT ?? '587', 10),
+    secure: process.env.SMTP_SECURE === 'true',
+    auth: { user, pass }
+  });
+}
+
+function mailFrom() {
+  return `"CORE Partners Website" <${process.env.SMTP_FROM ?? process.env.SMTP_USER ?? 'noreply@corepartnersconsulting.com'}>`;
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -19,32 +41,24 @@ export default async function handler(req, res) {
     <p><strong>#1 Challenge:</strong> ${escapeHtml(challenge || 'Not provided')}</p>
   `;
 
-  try {
-    const resendRes = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        from: process.env.RESEND_FROM_EMAIL || 'CORE Partners Website <onboarding@resend.dev>',
-        to: ['david@corepartnersconsulting.com', 'dale@corepartnersconsulting.com'],
-        reply_to: email,
-        subject: `New Website Request: ${fullName} (${practiceName})`,
-        html
-      })
-    });
+  const transporter = getTransporter();
+  if (!transporter) {
+    return res.status(500).json({ error: 'Email is not configured on the server' });
+  }
 
-    if (!resendRes.ok) {
-      const errText = await resendRes.text();
-      console.error('Resend error:', errText);
-      return res.status(502).json({ error: 'Failed to send email' });
-    }
+  try {
+    await transporter.sendMail({
+      from: mailFrom(),
+      to: ['david@corepartnersconsulting.com', 'dale@corepartnersconsulting.com'],
+      replyTo: email,
+      subject: `New Website Request: ${fullName} (${practiceName})`,
+      html
+    });
 
     return res.status(200).json({ ok: true });
   } catch (err) {
     console.error('Consultation submit error:', err);
-    return res.status(500).json({ error: 'Server error' });
+    return res.status(500).json({ error: 'Failed to send email' });
   }
 }
 
