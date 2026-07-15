@@ -46,7 +46,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 48px;
-    height: 64px;
+    min-height: 64px;
     opacity: 0;
     transform: translateY(-100%);
     animation: navDropIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
@@ -80,7 +80,7 @@
   .nav-links a:hover { color: var(--gold-light); }
 
   .nav-cta {
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     font-family: var(--mono);
@@ -88,10 +88,28 @@
     color: var(--gold);
     padding: 9px 20px;
     text-decoration: none;
-    font-weight: 400;
+    font-weight: 700;
     transition: background 0.2s;
   }
   .nav-cta:hover { background: var(--cream-warm); }
+
+  .nav-cta-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 0;
+  }
+  .cta-phone {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: rgba(236,231,219,0.55);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .cta-phone a { color: var(--gold-light); text-decoration: none; }
+  .cta-phone a:hover { text-decoration: underline; }
 
   /* ─── HERO ─── */
   .hero {
@@ -236,13 +254,13 @@
     background: var(--cream);
     color: var(--gold);
     font-family: var(--mono);
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     padding: 14px 28px;
     text-decoration: none;
     transition: background 0.2s;
-    font-weight: 400;
+    font-weight: 700;
   }
   .btn-primary:hover { background: var(--cream-warm); }
 
@@ -951,13 +969,13 @@
     background: var(--cream);
     color: var(--gold);
     font-family: var(--mono);
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     padding: 15px;
     border: none;
     cursor: pointer;
-    font-weight: 400;
+    font-weight: 700;
     transition: background 0.2s;
   }
   .form-submit:hover { background: var(--cream-warm); }
@@ -1141,7 +1159,10 @@
     <li><a href="#contact">Contact</a></li>
     <li><a href="https://app.corepartnersconsulting.com/login">Partner Login</a></li>
   </ul>
-  <a href="#contact" class="nav-cta">Book a Call</a>
+  <div class="nav-cta-wrap">
+    <a href="#contact" class="nav-cta">Book a Call</a>
+    <span class="cta-phone">or text/call now <a href="tel:12817994999">281-799-4999</a></span>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -1159,6 +1180,7 @@
     </p>
     <div class="hero-actions">
       <a href="#contact" class="btn-primary">Schedule a Discovery Call →</a>
+      <span class="cta-phone">or text/call now <a href="tel:12817994999">281-799-4999</a></span>
     </div>
   </div>
   <div class="hero-tagline">Real Relationships&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Real Outcomes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Real Growth</div>
@@ -1432,6 +1454,7 @@
           <textarea class="form-textarea" name="challenge" placeholder="e.g. Collections are flat, team accountability, too many hours..."></textarea>
 
           <button type="submit" class="form-submit">Request My Discovery Consultation →</button>
+          <div style="text-align:center; margin-top:8px;"><span class="cta-phone">or text/call now <a href="tel:12817994999">281-799-4999</a></span></div>
           <div class="form-divider">or</div>
           <a href="https://app.corepartnersconsulting.com/get-started" class="form-alt" style="display:block; text-align:center; text-decoration:none;">I'm Ready to Get Started Now</a>
         </form>
