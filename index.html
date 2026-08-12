@@ -1105,15 +1105,17 @@
   }
   .footer-contact-grid {
     display: flex;
-    gap: 48px;
-    justify-content: center;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
   }
   .footer-contact-label {
     font-family: var(--mono);
     font-size: 10px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
+    text-align: center;
     color: rgba(236,231,219,0.84);
     margin-bottom: 6px;
   }
@@ -1194,7 +1196,7 @@
       CORE Partners embeds directly into your practice, bringing the systems, strategy, and weekly accountability to finally grow your collections and reclaim your life.
     </p>
     <div class="hero-actions">
-      <a href="#contact" class="btn-primary">Schedule a Discovery Call →</a>
+      <a href="#contact" class="btn-primary">Book Your Roadmap Call →</a>
       <span class="cta-phone">or text/call now <a href="tel:12817994999">281-799-4999</a></span>
     </div>
   </div>
@@ -1486,9 +1488,18 @@
             <input class="form-input" type="text" name="referralName" placeholder="Name of the person who referred you" />
           </div>
 
-          <button type="submit" class="form-submit">Schedule a Discovery Call →</button>
+          <button type="submit" class="form-submit">Book Your Roadmap Call →</button>
           <div style="text-align:center; margin-top:8px;"><span class="cta-phone">or text/call now <a href="tel:12817994999">281-799-4999</a></span></div>
         </form>
+
+        <div id="calendar-embed-wrap" style="display:none; margin-top:24px;">
+          <p style="text-align:center; color:#d79b4b; font-weight:600; margin-bottom:12px;">Don't want to wait? Book Your Call Now!</p>
+          <div style="border-radius:12px; overflow:hidden; border:1px solid rgba(215,155,75,0.4); background:#f4ede0; color-scheme:light;">
+          <!-- Google Calendar Appointment Scheduling begin -->
+          <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3iW19VyzSO3Fe7RBcgR266bGXImsMB_2ToORp5afMSWzcXTJKuMVnMeYWZRJzgXxVGnOjhgIW8?gv=true" style="border: 0; color-scheme: light;" width="100%" height="600" frameborder="0"></iframe>
+          <!-- end Google Calendar Appointment Scheduling -->
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1504,12 +1515,14 @@
     <div class="footer-contact-grid">
       <div>
         <div class="footer-contact-label">Email</div>
+        <a href="mailto:dale@corepartnersconsulting.com" class="footer-contact-value">dale@corepartnersconsulting.com</a>
+        <br />
         <a href="mailto:david@corepartnersconsulting.com" class="footer-contact-value">david@corepartnersconsulting.com</a>
       </div>
       <div>
-        <div class="footer-contact-label">Availability</div>
         <div class="footer-contact-value footer-contact-italic">Senior Partners Available by Appointment</div>
       </div>
+
     </div>
   </div>
 
@@ -1727,10 +1740,14 @@
       });
       if (!res.ok) throw new Error('Request failed');
 
-      btn.textContent = 'Request Received. Redirecting...';
+      btn.textContent = 'Request Received';
       btn.style.background = '#2d6a3f';
       btn.style.color = '#fff';
-      setTimeout(() => { window.location.href = 'https://calendar.app.google/wrp7GxLLJMTR5z5C9'; }, 900);
+      const calendarWrap = document.getElementById('calendar-embed-wrap');
+      if (calendarWrap) {
+        calendarWrap.style.display = 'block';
+        calendarWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     } catch (err) {
       btn.textContent = 'Something went wrong. Please try again.';
       btn.style.background = '#a33';
