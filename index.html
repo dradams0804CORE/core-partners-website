@@ -1496,6 +1496,9 @@
             <input class="form-input" type="text" name="referralName" placeholder="Name of the person who referred you" />
           </div>
 
+          <!-- Filled in only when Turnstile keys are configured server-side. -->
+          <div id="turnstile-mount" style="margin:12px 0;"></div>
+
           <button type="submit" class="form-submit">Book Your Roadmap Call →</button>
           <div style="text-align:center; margin-top:8px;"><span class="cta-phone">or text/call now <a href="tel:12817994999">281-799-4999</a></span></div>
         </form>
@@ -1730,8 +1733,44 @@
     });
   }
 
-  // Stamped when the page loads, compared against submit time server-side.
-  window.__formStartedAt = Date.now();
+  // The server issues a signed, timestamped token; the submit endpoint refuses
+  // anything without one. Unlike the old client-side timestamp, a bot posting
+  // straight to the API has nothing valid it can send.
+  window.__formToken = null;
+
+  async function loadFormToken() {
+    try {
+      const res = await fetch('/api/form-token', { cache: 'no-store' });
+      const data = await res.json();
+      window.__formToken = data.token;
+      if (data.turnstileSiteKey) mountTurnstile(data.turnstileSiteKey);
+    } catch (err) {
+      // Leave the token null — the form still submits and the server-side
+      // checks simply have one less signal to work with.
+    }
+  }
+
+  // Cloudflare Turnstile is loaded only if a site key comes back, so the page
+  // pulls in nothing extra until the CAPTCHA is actually configured.
+  function mountTurnstile(siteKey) {
+    const mount = document.getElementById('turnstile-mount');
+    if (!mount || document.getElementById('turnstile-script')) return;
+    window.__onTurnstileLoad = () => {
+      window.turnstile.render(mount, {
+        sitekey: siteKey,
+        theme: 'dark',
+        callback: (token) => { window.__turnstileToken = token; }
+      });
+    };
+    const script = document.createElement('script');
+    script.id = 'turnstile-script';
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?onload=__onTurnstileLoad';
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+  }
+
+  loadFormToken();
 
   // Form submission
   async function handleSubmit(e) {
@@ -1742,9 +1781,8 @@
     btn.style.opacity = '0.7';
 
     const data = Object.fromEntries(new FormData(form).entries());
-    // Lets the server reject submissions that arrive faster than a person
-    // could have typed them.
-    data.formStartedAt = window.__formStartedAt || Date.now();
+    data.formToken = window.__formToken;
+    data.turnstileToken = window.__turnstileToken;
 
     try {
       const res = await fetch('/api/consultation', {
@@ -1755,6 +1793,7 @@
       if (!res.ok) throw new Error('Request failed');
 
       btn.textContent = 'Request Received';
+      loadFormToken(); // tokens are single-use; get a fresh one
       btn.style.background = '#2d6a3f';
       btn.style.color = '#fff';
       const calendarWrap = document.getElementById('calendar-embed-wrap');
