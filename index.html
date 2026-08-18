@@ -1442,6 +1442,14 @@
     <div class="form-right">
       <div class="form-card">
         <form id="consultation-form" onsubmit="handleSubmit(event)">
+          <!-- Bot trap. Real visitors never see or fill this; scripted
+               submitters that fill every input trip it. Not display:none —
+               some bots skip hidden inputs — it is moved off-screen instead. -->
+          <div aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;height:0;overflow:hidden;">
+            <label>Website</label>
+            <input type="text" name="hpWebsite" tabindex="-1" autocomplete="off" />
+          </div>
+
           <label class="form-label">Full Name</label>
           <input class="form-input" type="text" name="fullName" placeholder="Dr. Jane Smith" required />
 
@@ -1722,6 +1730,9 @@
     });
   }
 
+  // Stamped when the page loads, compared against submit time server-side.
+  window.__formStartedAt = Date.now();
+
   // Form submission
   async function handleSubmit(e) {
     e.preventDefault();
@@ -1731,6 +1742,9 @@
     btn.style.opacity = '0.7';
 
     const data = Object.fromEntries(new FormData(form).entries());
+    // Lets the server reject submissions that arrive faster than a person
+    // could have typed them.
+    data.formStartedAt = window.__formStartedAt || Date.now();
 
     try {
       const res = await fetch('/api/consultation', {
